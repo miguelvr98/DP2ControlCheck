@@ -1,6 +1,7 @@
 
 package controllers.audit;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import controllers.AbstractController;
 import domain.Audit;
 import domain.Auditor;
@@ -67,12 +68,16 @@ public class AuditController extends AbstractController {
         ModelAndView result;
         Collection<Audit> audits;
         Position position;
+        Boolean b = false;
 
         try{
             Assert.notNull(positionId);
             position = this.positionService.findOne(positionId);
             Assert.notNull(position);
             audits = this.auditService.getAuditsFinalByPosition(positionId);
+            if(position.getCompany().equals(actorService.getActorLogged())){
+                b = true;
+            }
         }catch(Throwable oops){
             result = new ModelAndView("redirect:/position/listNotLogged.do");
             return result;
@@ -81,6 +86,7 @@ public class AuditController extends AbstractController {
         result = new ModelAndView("audit/list");
         result.addObject("audits", audits);
         result.addObject("requestURI", "audit/list.do");
+        result.addObject("b", b);
         return result;
     }
 
