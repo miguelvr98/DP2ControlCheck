@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles.xml
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="xxxx/auditor/list" extends="master.page">
+		<put-attribute name="title" value="XXXXs" />
+		<put-attribute name="body" value="/views/xxxx/list.jsp" />
+	</definition>
+
+	<definition name="xxxx/company/list" extends="master.page">
+		<put-attribute name="title" value="XXXXs" />
+		<put-attribute name="body" value="/views/xxxx/list.jsp" />
+	</definition>
+
+	<definition name="xxxx/company/edit" extends="master.page">
+		<put-attribute name="title" value="XXXX" />
+		<put-attribute name="body" value="/views/xxxx/edit.jsp" />
+	</definition>
+
+	<definition name="xxxx/company/show" extends="master.page">
+		<put-attribute name="title" value="Show xxxx" />
+		<put-attribute name="body" value="/views/xxxx/show.jsp" />
+	</definition>
+
+	<definition name="xxxx/auditor/show" extends="master.page">
+		<put-attribute name="title" value="Show xxxx" />
+		<put-attribute name="body" value="/views/xxxx/show.jsp" />
+	</definition>
+
+</tiles-definitions>
