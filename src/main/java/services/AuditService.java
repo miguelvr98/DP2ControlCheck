@@ -1,9 +1,6 @@
 package services;
 
-import domain.Actor;
-import domain.Audit;
-import domain.Auditor;
-import domain.Position;
+import domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -28,6 +25,8 @@ public class AuditService {
     private AuditorService auditorService;
     @Autowired
     private PositionService positionService;
+    @Autowired
+    private XXXXService xxxxService;
     @Autowired
     private Validator validator;
 
@@ -129,6 +128,11 @@ public class AuditService {
 
         Position p = this.getPositionByAudit(audit.getId());
         p.getAudits().remove(audit);
+
+        Collection<XXXX> xxxxs = this.xxxxService.getXXXXsByAudit(audit.getId());
+        for(XXXX x: xxxxs){
+            this.xxxxService.forceDelete(x.getId());
+        }
 
         this.auditRepository.delete(audit.getId());
     }
