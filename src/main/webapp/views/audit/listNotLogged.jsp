@@ -36,7 +36,7 @@
         <spring:message code="audit.xxxxs" var="xxxxs"/>
         <display:column title="${xxxxs}" >
             <jstl:if test="${row.isFinal && b}">
-                <a href="xxxx/company/list.do?auditId=${row.id}">
+                <a href="mokejima/company/list.do?auditId=${row.id}">
                     <spring:message code="audit.xxxxs"/></a>
             </jstl:if>
         </display:column>
@@ -44,7 +44,7 @@
         <spring:message code="xxxx.create" var="create"/>
         <display:column title="${create}" >
             <jstl:if test="${row.isFinal && b}">
-                <a href="xxxx/company/create.do?auditId=${row.id}">
+                <a href="mokejima/company/create.do?auditId=${row.id}">
                     <spring:message code="xxxx.create"/></a>
             </jstl:if>
         </display:column>

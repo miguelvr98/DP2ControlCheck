@@ -80,7 +80,7 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="audit/auditor/list.do"><spring:message code="master.page.auditor.audits" /></a></li>
-					<li><a href="xxxx/auditor/list.do"><spring:message code="master.page.auditor.xxxx" /></a></li>
+					<li><a href="mokejima/auditor/list.do"><spring:message code="master.page.auditor.xxxx" /></a></li>
 				</ul>
 			</li>
 		</security:authorize>

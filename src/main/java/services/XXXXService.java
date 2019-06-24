@@ -1,136 +1,146 @@
+
 package services;
 
-import domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
-import repositories.AuditRepository;
-import repositories.XXXXRepository;
-
-import javax.transaction.Transactional;
-import javax.validation.ValidationException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 
+import javax.transaction.Transactional;
+import javax.validation.ValidationException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+
+import repositories.XXXXRepository;
+import domain.Audit;
+import domain.Company;
+import domain.Position;
+import domain.XXXX;
+
 @Service
 @Transactional
 public class XXXXService {
 
-    @Autowired
-    private XXXXRepository xxxxRepository;
-    @Autowired
-    private ActorService actorService;
-    @Autowired
-    private AuditService auditService;
-    @Autowired
-    private CompanyService companyService;
-    @Autowired
-    private Validator validator;
+	@Autowired
+	private XXXXRepository	xxxxRepository;
+	@Autowired
+	private ActorService	actorService;
+	@Autowired
+	private AuditService	auditService;
+	@Autowired
+	private CompanyService	companyService;
+	@Autowired
+	private Validator		validator;
 
-    public XXXX reconstruct(final XXXX xxxx, int auditId, final BindingResult binding) {
-        XXXX result;
-        if(xxxx.getId()==0) {
-            result = this.create();
-            result.setMoment(new Date());
-            result.setTicker(this.tickerGenerator());
-            result.setIsFinal(xxxx.getIsFinal());
-            result.setBody(xxxx.getBody());
-            result.setPicture(xxxx.getPicture());
-            result.setAudit(this.auditService.findOne(auditId));
-        } else{
-            result = this.findOne(xxxx.getId());
-            result.setBody(xxxx.getBody());
-            result.setPicture(xxxx.getPicture());
-            result.setIsFinal(xxxx.getIsFinal());
-        }
 
-        this.validator.validate(result, binding);
-        if (binding.hasErrors())
-            throw new ValidationException();
-        return result;
-    }
+	public XXXX reconstruct(final XXXX xxxx, final int auditId, final BindingResult binding) {
+		XXXX result;
+		if (xxxx.getId() == 0) {
+			result = this.create();
+			result.setMoment(new Date());
+			result.setTicker(this.tickerGenerator());
+			result.setIsFinal(xxxx.getIsFinal());
+			result.setBody(xxxx.getBody());
+			result.setPicture(xxxx.getPicture());
+			result.setAudit(this.auditService.findOne(auditId));
+		} else {
+			result = this.findOne(xxxx.getId());
+			result.setBody(xxxx.getBody());
+			result.setPicture(xxxx.getPicture());
+			result.setIsFinal(xxxx.getIsFinal());
+		}
 
-    public XXXX create(){
-        Assert.isTrue(this.actorService.getActorLogged() instanceof Company);
+		this.validator.validate(result, binding);
+		if (binding.hasErrors())
+			throw new ValidationException();
+		return result;
+	}
 
-        return new XXXX();
-    }
+	public XXXX create() {
+		Assert.isTrue(this.actorService.getActorLogged() instanceof Company);
 
-    public XXXX findOne(int xxxxId){
-        XXXX result;
+		return new XXXX();
+	}
 
-        result = this.xxxxRepository.findOne(xxxxId);
+	public XXXX findOne(final int xxxxId) {
+		XXXX result;
 
-        return result;
-    }
+		result = this.xxxxRepository.findOne(xxxxId);
 
-    public Collection<XXXX> findAll(){
-        Collection<XXXX> result;
+		return result;
+	}
 
-        result = this.xxxxRepository.findAll();
+	public Collection<XXXX> findAll() {
+		Collection<XXXX> result;
 
-        return result;
-    }
+		result = this.xxxxRepository.findAll();
 
-    public XXXX save(XXXX xxxx, int auditId){
-        Assert.isTrue(actorService.getActorLogged() instanceof Company);
-        XXXX result;
-        Position position;
-        Audit audit = this.auditService.findOne(auditId);
-        position = this.auditService.getPositionByAudit(auditId);
-        Company company = this.companyService.findOne(actorService.getActorLogged().getId());
-        Assert.isTrue(position.getCompany().equals(company));
-        Assert.isTrue(audit.getIsFinal());
-        Assert.isTrue(position.getIsFinal());
-        Assert.isTrue(!position.getIsCancelled());
+		return result;
+	}
 
-        result = this.xxxxRepository.save(xxxx);
+	public XXXX save(final XXXX xxxx, final int auditId) {
+		Assert.isTrue(this.actorService.getActorLogged() instanceof Company);
+		XXXX result;
+		Position position;
+		final Audit audit = this.auditService.findOne(auditId);
+		position = this.auditService.getPositionByAudit(auditId);
+		final Company company = this.companyService.findOne(this.actorService.getActorLogged().getId());
+		Assert.isTrue(position.getCompany().equals(company));
+		Assert.isTrue(audit.getIsFinal());
+		Assert.isTrue(position.getIsFinal());
+		Assert.isTrue(!position.getIsCancelled());
 
-        return result;
-    }
+		result = this.xxxxRepository.save(xxxx);
 
-    public void delete(int xxxxId){
-        Assert.isTrue(actorService.getActorLogged() instanceof Company);
-        XXXX xxxx = this.findOne(xxxxId);
-        Position position = this.auditService.getPositionByAudit(xxxx.getAudit().getId());
-        Assert.isTrue(!xxxx.getIsFinal());
-        Assert.isTrue(position.getCompany().equals(this.companyService.findOne(actorService.getActorLogged().getId())));
-        this.xxxxRepository.delete(xxxxId);
-    }
+		return result;
+	}
 
-    public void forceDelete(int xxxxId){
-        this.xxxxRepository.delete(xxxxId);
-    }
+	public void delete(final int xxxxId) {
+		Assert.isTrue(this.actorService.getActorLogged() instanceof Company);
+		final XXXX xxxx = this.findOne(xxxxId);
+		final Position position = this.auditService.getPositionByAudit(xxxx.getAudit().getId());
+		Assert.isTrue(!xxxx.getIsFinal());
+		Assert.isTrue(position.getCompany().equals(this.companyService.findOne(this.actorService.getActorLogged().getId())));
+		this.xxxxRepository.delete(xxxxId);
+	}
 
-    public Collection<XXXX> getXXXXsFinalByAuditor(){
-        Collection<XXXX> result;
+	public void forceDelete(final int xxxxId) {
+		this.xxxxRepository.delete(xxxxId);
+	}
 
-        result = this.xxxxRepository.getXXXXsFinalByAuditor(this.actorService.getActorLogged().getId());
+	public Collection<XXXX> getXXXXsFinalByAuditor() {
+		Collection<XXXX> result;
 
-        return result;
-    }
+		result = this.xxxxRepository.getXXXXsFinalByAuditor(this.actorService.getActorLogged().getId());
 
-    public Collection<XXXX> getXXXXsByAudit(int auditId) {
-        return this.xxxxRepository.getXXXXsByAudit(auditId);
-    }
+		return result;
+	}
 
-    private String tickerGenerator() {
-        String dateRes = "";
-        String numericRes = "";
-        final String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        dateRes = new SimpleDateFormat("yyMMdd").format(Calendar.getInstance().getTime());
+	public Collection<XXXX> getXXXXsByAudit(final int auditId) {
+		return this.xxxxRepository.getXXXXsByAudit(auditId);
+	}
 
-        for (int i = 0; i < 5; i++) {
-            final Random random = new Random();
-            numericRes = numericRes + alphanumeric.charAt(random.nextInt(alphanumeric.length() - 1));
-        }
+	private String tickerGenerator() {
+		String yearRes = "";
+		String monthRes = "";
+		String dayRes = "";
+		String numericRes = "";
+		final String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+		yearRes = new SimpleDateFormat("yy").format(Calendar.getInstance().getTime());
+		monthRes = new SimpleDateFormat("MM").format(Calendar.getInstance().getTime());
+		dayRes = new SimpleDateFormat("dd").format(Calendar.getInstance().getTime());
 
-        return dateRes + "-" + numericRes;
-    }
+		for (int i = 0; i < 5; i++) {
+			final Random random = new Random();
+			numericRes = numericRes + alphanumeric.charAt(random.nextInt(alphanumeric.length() - 1));
+		}
+
+		return yearRes + "/" + monthRes + "/" + dayRes + "-" + numericRes;
+	}
 
 }

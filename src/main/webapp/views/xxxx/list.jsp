@@ -12,16 +12,16 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <style type="text/css">
-    .INDIGO {
-        background-color: Indigo;
+    .DARKORANGE {
+        background-color: DarkOrange;
     }
 
-    .PAPAYAWHIP {
-        background-color: PapayaWhip;
+    .LIGHTSLATEGREY {
+        background-color: LightSlateGrey;
     }
 
-    .DARKSLATEGREY {
-        background-color: DarkSlateGrey;
+    .PLUM {
+        background-color: Plum;
     }
 </style>
 
@@ -30,13 +30,13 @@
 
     <jstl:choose>
         <jstl:when test="${row.moment > haceUnMes }">
-            <jstl:set var="css" value="INDIGO"/>
+            <jstl:set var="css" value="DARKORANGE"/>
         </jstl:when>
         <jstl:when test="${row.moment < haceUnMes && row.moment>haceDosMeses}">
-            <jstl:set var="css" value="DARKSLATEGREY"/>
+            <jstl:set var="css" value="PLUM"/>
         </jstl:when>
         <jstl:otherwise>
-            <jstl:set var="css" value="PAPAYAWHIP" />
+            <jstl:set var="css" value="LIGHTSLATEGREY" />
         </jstl:otherwise>
     </jstl:choose>
 
@@ -76,14 +76,14 @@
 
         <spring:message code="xxxx.show" var="show"/>
         <display:column title="${show}" class="${css}">
-            <a href="xxxx/company/show.do?xxxxId=${row.id}">
+            <a href="mokejima/company/show.do?mokejimaId=${row.id}">
                 <spring:message code="xxxx.show"/></a>
         </display:column>
 
         <spring:message code="xxxx.edit" var="edit"/>
         <display:column title="${edit}" class="${css}">
             <jstl:if test="${!row.isFinal}">
-                <a href="xxxx/company/edit.do?xxxxId=${row.id}">
+                <a href="mokejima/company/edit.do?mokejimaId=${row.id}">
                     <spring:message code="xxxx.edit"/></a>
             </jstl:if>
         </display:column>
@@ -91,7 +91,7 @@
         <spring:message code="xxxx.delete" var="delete"/>
         <display:column title="${delete}" class="${css}">
             <jstl:if test="${!row.isFinal}">
-                <a href="xxxx/company/delete.do?xxxxId=${row.id}">
+                <a href="mokejima/company/delete.do?mokejimaId=${row.id}">
                     <spring:message code="xxxx.delete"/></a>
             </jstl:if>
         </display:column>
@@ -101,7 +101,7 @@
     <security:authorize access="hasRole('AUDITOR')">
         <spring:message code="xxxx.show" var="show"/>
         <display:column title="${show}" class="${css}">
-            <a href="xxxx/auditor/show.do?xxxxId=${row.id}">
+            <a href="mokejima/auditor/show.do?mokejimaId=${row.id}">
                 <spring:message code="xxxx.show"/></a>
         </display:column>
 

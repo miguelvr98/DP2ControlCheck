@@ -10,7 +10,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="xxxx/company/edit.do" modelAttribute="xxxx">
+<form:form action="mokejima/company/edit.do" modelAttribute="xxxx">
 
     <form:hidden path="id" readOnly = "true"/>
     <input type="hidden" name="auditId" value="${auditId}" readonly>
@@ -34,6 +34,6 @@
 
     <acme:submit name="save" code="xxxx.save"/>
 
-    <acme:cancel url="xxxx/company/list.do?auditId=${auditId}" code="xxxx.cancel"/>
+    <acme:cancel url="mokejima/company/list.do?auditId=${auditId}" code="xxxx.cancel"/>
 
 </form:form>

@@ -16,28 +16,28 @@
       
 <tiles-definitions>
 
-	<definition name="xxxx/auditor/list" extends="master.page">
-		<put-attribute name="title" value="XXXXs" />
+	<definition name="mokejima/auditor/list" extends="master.page">
+		<put-attribute name="title" value="Mokejimas" />
 		<put-attribute name="body" value="/views/xxxx/list.jsp" />
 	</definition>
 
-	<definition name="xxxx/company/list" extends="master.page">
-		<put-attribute name="title" value="XXXXs" />
+	<definition name="mokejima/company/list" extends="master.page">
+		<put-attribute name="title" value="Mokejimas" />
 		<put-attribute name="body" value="/views/xxxx/list.jsp" />
 	</definition>
 
-	<definition name="xxxx/company/edit" extends="master.page">
-		<put-attribute name="title" value="XXXX" />
+	<definition name="mokejima/company/edit" extends="master.page">
+		<put-attribute name="title" value="Mokejima" />
 		<put-attribute name="body" value="/views/xxxx/edit.jsp" />
 	</definition>
 
-	<definition name="xxxx/company/show" extends="master.page">
-		<put-attribute name="title" value="Mostrar xxxx" />
+	<definition name="mokejima/company/show" extends="master.page">
+		<put-attribute name="title" value="Mostrar mokejima" />
 		<put-attribute name="body" value="/views/xxxx/show.jsp" />
 	</definition>
 
-	<definition name="xxxx/auditor/show" extends="master.page">
-		<put-attribute name="title" value="Mostrar xxxx" />
+	<definition name="mokejima/auditor/show" extends="master.page">
+		<put-attribute name="title" value="Mostrar mokejima" />
 		<put-attribute name="body" value="/views/xxxx/show.jsp" />
 	</definition>
 

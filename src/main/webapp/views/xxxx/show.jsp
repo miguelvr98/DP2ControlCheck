@@ -17,9 +17,9 @@
 </fieldset>
 
 <security:authorize access="hasRole('COMPANY')">
-    <acme:cancel url="xxxx/company/list.do?auditId${xxxx.audit.id}" code="xxxx.back"/>
+    <acme:cancel url="mokejima/company/list.do?auditId=${xxxx.audit.id}" code="xxxx.back"/>
 </security:authorize>
 
 <security:authorize access="hasRole('AUDITOR')">
-    <acme:cancel url="xxxx/auditor/list.do" code="xxxx.back"/>
+    <acme:cancel url="mokejima/auditor/list.do" code="xxxx.back"/>
 </security:authorize>

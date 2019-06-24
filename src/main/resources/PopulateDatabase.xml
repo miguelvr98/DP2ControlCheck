@@ -848,36 +848,36 @@
 
 	<!-- XXXXs -->
 
-	<bean id="xxxx1TEST" class ="domain.XXXX">
+	<bean id="mokejima1TEST" class ="domain.XXXX">
 		<property name = "moment" value = "06/21/2019"/>
-		<property name = "ticker" value = "12345-190621"/>
-		<property name = "body" value = "xxxx1body"/>
+		<property name = "ticker" value = "19/06/21-1a2b3"/>
+		<property name = "body" value = "mokejima1body"/>
 		<property name = "isFinal" value="true"/>
 		<property name= "picture" value="http://www.link.com"/>
 		<property name="audit" ref="audit1"/>
 	</bean>
 
-	<bean id="xxxx2TEST" class ="domain.XXXX">
+	<bean id="mokejima2TEST" class ="domain.XXXX">
 		<property name = "moment" value = "05/11/2019"/>
-		<property name = "ticker" value = "12345-190511"/>
-		<property name = "body" value = "xxxx2body"/>
+		<property name = "ticker" value = "19/05/11-4d5e6"/>
+		<property name = "body" value = "mokejima2body"/>
 		<property name = "isFinal" value="false"/>
 		<property name="audit" ref="audit1"/>
 	</bean>
 
-	<bean id="xxxx3TEST" class ="domain.XXXX">
+	<bean id="mokejima3TEST" class ="domain.XXXX">
 		<property name = "moment" value = "01/21/2019"/>
-		<property name = "ticker" value = "12345-190121"/>
-		<property name = "body" value = "xxxx3body"/>
+		<property name = "ticker" value = "19/01/21-abcde"/>
+		<property name = "body" value = "mokejima3body"/>
 		<property name = "isFinal" value="true"/>
 		<property name="picture" value="http://www.link.com"/>
 		<property name="audit" ref="audit3"/>
 	</bean>
 
-	<bean id="xxxx4TEST" class ="domain.XXXX">
+	<bean id="mokejima4TEST" class ="domain.XXXX">
 		<property name = "moment" value = "01/11/2019"/>
-		<property name = "ticker" value = "12345-190111"/>
-		<property name = "body" value = "xxxx4body"/>
+		<property name = "ticker" value = "19/01/11-12345"/>
+		<property name = "body" value = "mokejima4body"/>
 		<property name = "isFinal" value="false"/>
 		<property name="audit" ref="audit3"/>
 	</bean>
